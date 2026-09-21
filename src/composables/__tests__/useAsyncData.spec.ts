@@ -56,7 +56,7 @@ describe('useAsyncData', () => {
   it('debounces watched dependencies', async () => {
     const fetcher = vi.fn().mockResolvedValue('success-data')
     const trigger = ref('A')
-    const { loading } = useAsyncData(fetcher, { watch: [trigger], debounceMs: 100, immediate: false })
+    useAsyncData(fetcher, { watch: [trigger], debounceMs: 100, immediate: false })
 
     // Change dependency a few times rapidly
     trigger.value = 'B'

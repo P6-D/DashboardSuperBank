@@ -35,10 +35,12 @@ describe('Auth Store', () => {
       accessToken: 'new-token',
       expiresIn: 3600,
       refreshToken: 'new-refresh',
+      mfaRequired: false,
       user: {
         id: '1',
         fullName: 'Test Admin',
         email: 'test@admin.com',
+        phone: '+1234567890',
         status: 'ACTIVE',
         mfaEnabled: false,
         lastLoginAt: 'now',
