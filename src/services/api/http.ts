@@ -7,12 +7,16 @@ import { useAuthStore } from '@/stores/auth.store'
 
 /**
  * FRD §7.1 base path convention (`/api/v1/**`) and §11.4 request correlation.
- * Base URL is empty so requests go through the Vite dev proxy (`/api` ->
- * `http://localhost:8080`) in dev, and same-origin in a reverse-proxied
- * deployment — see vite.config.ts.
+ *
+ * In development the Vite dev-server proxies `/api` → `http://localhost:8080`
+ * (see vite.config.ts), so a relative baseURL works.
+ *
+ * In production (Docker) there is no reverse proxy — set the build-time env var
+ * VITE_API_BASE_URL to the full backend origin, e.g.
+ *   VITE_API_BASE_URL=http://localhost:8081/api/v1
  */
 const _http = axios.create({
-  baseURL: '/api/v1',
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/api/v1',
   timeout: 15000,
 })
 
