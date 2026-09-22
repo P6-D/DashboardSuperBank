@@ -34,6 +34,17 @@ export const adminApi = {
       }),
     ),
 
+  getUserAccounts: (userId: string) =>
+    unwrap(http.get<ApiResponse<any[]>>(`/admin/users/${userId}/accounts`)),
+
+  addBalance: (userId: string, accountId: string, amount: string, description?: string) =>
+    unwrap(
+      http.post<ApiResponse<any>>(`/admin/users/${userId}/accounts/${accountId}/add-balance`, {
+        amount,
+        description,
+      }),
+    ),
+
   updateFraudCase: (caseId: string, status: string, resolutionNote?: string) =>
     unwrap(http.patch<ApiResponse<FraudCase>>(`/admin/fraud-cases/${caseId}`, { status, resolutionNote })),
 
