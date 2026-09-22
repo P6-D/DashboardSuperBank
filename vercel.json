@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "http://34.101.61.98:8081/api/$1"
+    },
+    {
+      "source": "/actuator/(.*)",
+      "destination": "http://34.101.61.98:8081/actuator/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
